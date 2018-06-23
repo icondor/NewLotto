@@ -1,6 +1,7 @@
 
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
@@ -60,16 +61,27 @@ public class Main {
 
         int index = 0;
 
-        for (Integer myNumber : myNumbers) {
-//            ++index;
-            index++;
-            if(myNumber % 2 != 0) {
-                System.out.println(index + ":" + myNumber);
-                myNumbers.remove(myNumber);
+        Iterator<Integer> iterator = myNumbers.iterator();
+        while(iterator.hasNext()) {
+            Integer myNumber = iterator.next();
+            if(myNumber %2 != 0) {
+                System.out.println("Removing " + myNumber);
+//                myNumbers.remove(myNumber);
+                iterator.remove();
             }
-
         }
-        System.out.println(myNumbers);
+
+//        for (Integer myNumber : myNumbers) {
+//            //            ++index;
+//            index++;
+//            if (myNumber % 2 != 0) {
+//                System.out.println(index + ":" + myNumber);
+//                myNumbers.remove(myNumber);
+//            }
+//
+//        }
+
+        System.out.println("my numbers" + myNumbers);
 
 
     }
