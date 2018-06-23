@@ -59,17 +59,17 @@ public class Main {
         System.out.println(myNumbers);
 
         int index = 0;
-        Set<Integer> survivors = new HashSet<>();
+
         for (Integer myNumber : myNumbers) {
 //            ++index;
             index++;
-            if(myNumber % 2 == 0) {
+            if(myNumber % 2 != 0) {
                 System.out.println(index + ":" + myNumber);
-                survivors.add(myNumber);
+                myNumbers.remove(myNumber);
             }
 
         }
-        System.out.println(survivors);
+        System.out.println(myNumbers);
 
 
     }
