@@ -23,6 +23,9 @@ public class LetterFrequencyInString {
         Map<Character, Integer> frequencies = new HashMap<>();
         for(int i = 0; i < nextLine.length(); i++) {
             Character c = nextLine.charAt(i);
+            //TODO: 1. Map.getOrDefault()
+            //TODO: 2. nextLine.toCharArray()
+            //TODO: 3. (streams on collections Java 8)
             if(frequencies.containsKey(c)) {
                 //crestem valoarea din map cu 1
                 //iau valoarea din map
