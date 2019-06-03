@@ -1,6 +1,7 @@
 
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
@@ -20,32 +21,67 @@ public class Main {
         Main m = new Main();
         Random myNumbersMachine = new Random();
 
-        int[] agencyNumbers = new int[6];
-        int[] myNumbers = new int[6];
+        Set<Integer> agencyNumbers;
+        Set<Integer> myNumbers;
         agencyNumbers = getU(m, myNumbersMachine);
 
 
         int counter = 0;
         int nrTickets = 0;
-        while (counter < 6) {
+        do {
             nrTickets++;
             counter = 0;
             // nr mele
             myNumbers = getU(m, myNumbersMachine);
 
             // compar
-
-            for (int j = 0; j < 6; j++) {
-                for (int k = 0; k < 6; k++) {
-                    if (agencyNumbers[j] == myNumbers[k])
-                        counter++;
-
-                }
+;
+//            System.out.println(agencyNumbers);
+//            System.out.println(myNumbers);
+//            Set<Integer> commonNumbers = new HashSet<>(myNumbers);
+            myNumbers.retainAll(agencyNumbers);
+            System.out.println(myNumbers);
+            if(myNumbers.size() >= 5) {
+                counter = 6;
             }
-        }
+
+//            for (int j = 0; j < 6; j++) {
+//                for (int k = 0; k < 6; k++) {
+//                    if (agencyNumbers[j] == myNumbers[k])
+//                        counter++;
+//
+//                }
+//            }
+        } while (counter < 6);
 
         System.out.println("");
         System.out.println("ionel ai nimerit 6 numere jucand:" + nrTickets);
+
+        System.out.println(myNumbers);
+
+        int index = 0;
+
+        Iterator<Integer> iterator = myNumbers.iterator();
+        while(iterator.hasNext()) {
+            Integer myNumber = iterator.next();
+            if(myNumber %2 != 0) {
+                System.out.println("Removing " + myNumber);
+//                myNumbers.remove(myNumber);
+                iterator.remove();
+            }
+        }
+
+//        for (Integer myNumber : myNumbers) {
+//            //            ++index;
+//            index++;
+//            if (myNumber % 2 != 0) {
+//                System.out.println(index + ":" + myNumber);
+//                myNumbers.remove(myNumber);
+//            }
+//
+//        }
+
+        System.out.println("my numbers" + myNumbers);
 
 
     }
@@ -63,7 +99,7 @@ public class Main {
     }
 
 
-    private static int[] getU(Main m, Random myNumbersMachine) {
+    private static Set<Integer> getU(Main m, Random myNumbersMachine) {
         Set<Integer> se = new HashSet<>();
         int[] a = new int[6];
 
@@ -81,11 +117,11 @@ public class Main {
             i++;
         }
         //  System.out.println();
-        return a;
+        return se;
 
     }
 
-    private static int[] getU(Random myNumbersMachine) {
+    private static Set<Integer> getU(Random myNumbersMachine) {
         Set<Integer> se = new HashSet<>();
         int[] a = new int[6];
 
@@ -98,7 +134,7 @@ public class Main {
         // possible only in java 8 (using streams)
         a = se.stream().mapToInt(Integer::intValue).toArray();
 
-        return a;
+        return se;
 
     }
 
